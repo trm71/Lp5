@@ -130,7 +130,7 @@ int main()
     cout << "Enter the size of the array: ";
     cin >> size;
 
-    vector<int> arr(size), arr_copy(size);
+    vector<int> arr(size), arr_copy(size), arr1(size),arr2(size);
 
     // Initialize the array with user input
     for (int i = 0; i < size; ++i)
@@ -138,6 +138,8 @@ int main()
         cout << "Enter element " << i + 1 << ": ";
         cin >> arr[i];
         arr_copy[i] = arr[i];
+        arr1[i] = arr[i];
+        arr2[i] = arr[i];
     }
 
     cout << "Generated array: ";
@@ -163,21 +165,21 @@ int main()
 
     // Measure sequential Merge Sort execution time
     start = high_resolution_clock::now();
-    mergeSort(arr_copy, 0, size - 1);
+    mergeSort(arr1, 0, size - 1);
     stop = high_resolution_clock::now();
     auto seq_duration_merge = duration_cast<microseconds>(stop - start);
 
     cout << "Sequential Merge Sort: ";
-    printArray(arr_copy);
+    printArray(arr1);
 
     // Measure parallel Merge Sort execution time
     start = high_resolution_clock::now();
-    parallelMergeSort(arr, 0, size - 1);
+    parallelMergeSort(arr2, 0, size - 1);
     stop = high_resolution_clock::now();
     auto par_duration_merge = duration_cast<microseconds>(stop - start);
 
     cout << "Parallel Merge Sort: ";
-    printArray(arr);
+    printArray(arr2);
 
     // Output results
     cout << "Sequential Bubble Sort Time: " << seq_duration_bubble.count() << " microseconds" << endl;
